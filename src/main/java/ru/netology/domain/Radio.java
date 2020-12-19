@@ -3,7 +3,7 @@ package ru.netology.domain;
 public class Radio {
     private String name;
     private int currentRadiostation;
-    private int volume = 2;
+    private int volume;
 
     public void setCurrentRadiostation(int currentRadiostation) {
         if (currentRadiostation > 9) {
@@ -16,6 +16,12 @@ public class Radio {
     }
 
     public void setVolume(int volume) {
+        if (volume > 10) {
+            return;
+        }
+        if (volume < 0) {
+            return;
+        }
         this.volume = volume;
     }
 
@@ -34,6 +40,7 @@ public class Radio {
         }
         setCurrentRadiostation(currentRadiostation - 1);
     }
+
     public void increaseVolume() {
         if (volume == 10) {
             return;
@@ -47,6 +54,7 @@ public class Radio {
         }
         setVolume(volume - 1);
     }
+
     public int getVolume() {
         return volume;
     }
@@ -54,10 +62,4 @@ public class Radio {
     public int getCurrentRadiostation() {
         return currentRadiostation;
     }
-
-
-
-
-
-
 }
