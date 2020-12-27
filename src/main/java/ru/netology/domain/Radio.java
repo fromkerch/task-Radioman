@@ -1,22 +1,16 @@
 package ru.netology.domain;
 
 public class Radio {
-    private String name;
-    private int currentRadiostation;
-    private int volume;
+    private String radioName = "SmartRadio";
+    private int station;
+    private int stationsQuantity = 10;
+    private int volume = 10;
 
-    public void setCurrentRadiostation(int currentRadiostation) {
-        if (currentRadiostation > 9) {
-            return;
-        }
-        if (currentRadiostation < 0) {
-            return;
-        }
-        this.currentRadiostation = currentRadiostation;
+    public Radio() {
     }
 
-    public void setVolume(int volume) {
-        if (volume > 10) {
+    public Radio(int volume) {
+        if (volume > 100) {
             return;
         }
         if (volume < 0) {
@@ -25,41 +19,82 @@ public class Radio {
         this.volume = volume;
     }
 
-    public void nextRadiostation() {
-        if (currentRadiostation == 9) {
-            setCurrentRadiostation(0);
-            return;
-        }
-        setCurrentRadiostation(currentRadiostation + 1);
+//    public Radio(int stationsQuantity) {
+//        this.stationsQuantity = stationsQuantity;
+//        setStationsQuantity(stationsQuantity);
+//    }
+
+
+    public Radio(String radioName, int station) {
+        this.radioName = radioName;
+        setStation(station);
     }
 
-    public void prevRadiostation() {
-        if (currentRadiostation == 0) {
-            setCurrentRadiostation(9);
+    public void setStationsQuantity(int stationsQuantity) {
+        if (stationsQuantity > 30) {
             return;
         }
-        setCurrentRadiostation(currentRadiostation - 1);
+        if (stationsQuantity < 1) {
+            return;
+        }
+        this.stationsQuantity = stationsQuantity;
+    }
+
+    public void setStation(int station) {
+        if (station > stationsQuantity) {
+            return;
+        }
+        if (station < 0) {
+            return;
+        }
+        this.station = station;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+
+    public void switchStationUp() {
+        if (station == stationsQuantity) {
+            setStation(0);
+            return;
+        }
+        setStation(++station);
+    }
+
+    public void switchStationDown() {
+        if (station == 0) {
+            setStation(stationsQuantity);
+            return;
+        }
+        setStation(--station);
     }
 
     public void increaseVolume() {
-        if (volume == 10) {
+        if (volume == 100) {
             return;
         }
-        setVolume(volume + 1);
+        setVolume(++volume);
     }
 
     public void decreaseVolume() {
         if (volume == 0) {
             return;
         }
-        setVolume(volume - 1);
+        setVolume(--volume);
     }
 
     public int getVolume() {
         return volume;
     }
 
-    public int getCurrentRadiostation() {
-        return currentRadiostation;
+    public int getStation() {
+        return station;
     }
+
+    public int getStationsQuantity() {
+        return stationsQuantity;
+    }
+
 }
